@@ -7,8 +7,8 @@
     <ProjectGuid>{0AED2A5C-6B85-4120-8286-8DAD4007FB96}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Atiran.UI.WindowsForms</RootNamespace>
-    <AssemblyName>Atiran.UI.WindowsForms</AssemblyName>
+    <RootNamespace>PersianUI</RootNamespace>
+    <AssemblyName>PersianUI</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
