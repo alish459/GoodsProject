@@ -74,12 +74,6 @@ namespace PersianUI.MessageBoxes
         }
 
         public static DialogResult dialog;
-      private static MessageBoxes.MessageBoxLoading LoadingBox;
-
-        public static void CloseLoading()
-        {
-            MessageBoxes.MessageBoxLoading.CustomMessageBox.Close();
-        }
         private void CustomMessageForm_Load(object sender, EventArgs e)
         {
             if (BoxNum_ == "i")
@@ -96,10 +90,6 @@ namespace PersianUI.MessageBoxes
             {
                 MessageBoxes.MessageBoxWarning.CustomMessageBox.Show(Title_, Desc_,ref dialog);
                 this.Close();
-            }
-            if (BoxNum_ == "l")
-            {
-                MessageBoxes.MessageBoxLoading.CustomMessageBox.Show(Title_, Desc_, Task_, this);
             }
         }
     }

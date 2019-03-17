@@ -15,7 +15,6 @@ namespace GoodsSolution
         public MainForm()
         {
             InitializeComponent();
-            PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "تست","w");
         }
     }
 }
