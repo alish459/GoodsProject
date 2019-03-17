@@ -75,5 +75,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Atiran.UI.WindowsForms\PersianUI.csproj">
+      <Project>{0aed2a5c-6b85-4120-8286-8dad4007fb96}</Project>
+      <Name>PersianUI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
