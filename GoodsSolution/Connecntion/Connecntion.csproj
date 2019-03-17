@@ -57,6 +57,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersianMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tables\AllGoods.cs" />
     <Compile Include="Tables\Arz.cs" />
   </ItemGroup>
   <ItemGroup>

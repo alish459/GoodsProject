@@ -13,6 +13,7 @@ namespace Connecntion
         {
         }
         public virtual DbSet<Arz> Arz { get; set; }
+        public virtual DbSet<AllGoods> AllGoods { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Arz>()
