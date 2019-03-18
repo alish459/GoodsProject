@@ -7,22 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Connection
+namespace Connection.Model
 {
     using System;
     using System.Collections.Generic;
     
     public partial class Arz
     {
-        public Arz()
-        {
-            this.AllGoods = new HashSet<AllGoods>();
-        }
-    
         public int ArzID { get; set; }
         public string ArzName { get; set; }
-        public decimal ArzPrice { get; set; }
-    
-        public virtual ICollection<AllGoods> AllGoods { get; set; }
+        public decimal Price { get; set; }
     }
 }

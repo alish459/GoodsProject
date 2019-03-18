@@ -110,7 +110,7 @@
       <Name>PersianUI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Connection\Connection.csproj">
-      <Project>{f5c0e290-0a37-483e-9fde-af0db35f07a8}</Project>
+      <Project>{af95c681-8d39-4257-9ef5-08f472e2d1fd}</Project>
       <Name>Connection</Name>
     </ProjectReference>
   </ItemGroup>

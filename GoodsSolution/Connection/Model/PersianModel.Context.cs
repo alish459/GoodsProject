@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Connection
+namespace Connection.Model
 {
     using System;
     using System.Data.Entity;
@@ -25,7 +25,6 @@ namespace Connection
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<AllGoods> AllGoods { get; set; }
         public DbSet<Arz> Arz { get; set; }
     }
 }

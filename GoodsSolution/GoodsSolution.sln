@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodsSolution", "GoodsSolut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersianUI", "Atiran.UI.WindowsForms\PersianUI.csproj", "{0AED2A5C-6B85-4120-8286-8DAD4007FB96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connection", "Connection\Connection.csproj", "{F5C0E290-0A37-483E-9FDE-AF0DB35F07A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connection", "Connection\Connection.csproj", "{AF95C681-8D39-4257-9EF5-08F472E2D1FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,14 +33,14 @@ Global
 		{0AED2A5C-6B85-4120-8286-8DAD4007FB96}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0AED2A5C-6B85-4120-8286-8DAD4007FB96}.Release|x86.ActiveCfg = Release|x86
 		{0AED2A5C-6B85-4120-8286-8DAD4007FB96}.Release|x86.Build.0 = Release|x86
-		{F5C0E290-0A37-483E-9FDE-AF0DB35F07A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5C0E290-0A37-483E-9FDE-AF0DB35F07A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5C0E290-0A37-483E-9FDE-AF0DB35F07A8}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F5C0E290-0A37-483E-9FDE-AF0DB35F07A8}.Debug|x86.Build.0 = Debug|Any CPU
-		{F5C0E290-0A37-483E-9FDE-AF0DB35F07A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5C0E290-0A37-483E-9FDE-AF0DB35F07A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F5C0E290-0A37-483E-9FDE-AF0DB35F07A8}.Release|x86.ActiveCfg = Release|Any CPU
-		{F5C0E290-0A37-483E-9FDE-AF0DB35F07A8}.Release|x86.Build.0 = Release|Any CPU
+		{AF95C681-8D39-4257-9EF5-08F472E2D1FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF95C681-8D39-4257-9EF5-08F472E2D1FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF95C681-8D39-4257-9EF5-08F472E2D1FD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AF95C681-8D39-4257-9EF5-08F472E2D1FD}.Debug|x86.Build.0 = Debug|Any CPU
+		{AF95C681-8D39-4257-9EF5-08F472E2D1FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF95C681-8D39-4257-9EF5-08F472E2D1FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF95C681-8D39-4257-9EF5-08F472E2D1FD}.Release|x86.ActiveCfg = Release|Any CPU
+		{AF95C681-8D39-4257-9EF5-08F472E2D1FD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

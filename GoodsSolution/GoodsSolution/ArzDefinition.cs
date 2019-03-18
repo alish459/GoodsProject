@@ -32,11 +32,19 @@ namespace GoodsSolution
         private System.Threading.Thread threadLoad;
         private PersianUI.Controls.Buttons.DeleteButton deleteButton;
         private System.Threading.ThreadStart threadStartLoad;
-        private List<Connection.Arz> Result = new List<Connection.Arz>(); 
+        private List<Connection.Model.Arz> Result = new List<Connection.Model.Arz>();
         public ArzDefinition()
         {
             InitializeComponent();
-            Result = 
+            LoadData();
+        }
+        private void LoadData()
+        {
+            txtArz.Text = txtArzEdit.Text = txtPrice.Text = txtPriceEdit.Text = string.Empty;
+            pnlFooter.Visible = false;
+            Result = Connection.CrudService.ArzCrud.ReturnArz();
+            dataGridView1.DataSource = Result;
+            txtArz.Focus();
         }
         private void InitializeComponent()
         {
@@ -136,6 +144,7 @@ namespace GoodsSolution
             this.saveButton.TabIndex = 0;
             this.saveButton.Text = "ثبت";
             this.saveButton.UseVisualStyleBackColor = false;
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // txtPrice
             // 
@@ -451,6 +460,28 @@ namespace GoodsSolution
         private void CancelButton_Click(object sender, EventArgs e)
         {
             MainForm.pnlMain.Controls.Clear();
+        }
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            if (txtArz.Text.Trim()==string.Empty)
+            {
+                PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "نام ارز نمي‌تواند خالي باشد", "e");
+                return;
+            }
+            if (txtPrice.Text=="0")
+            {
+                PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "مبلغ ارز نمي‌تواند خالي باشد", "e");
+                return;
+            }
+            if (Connection.CrudService.ArzCrud.Create(new Connection.Model.Arz() {ArzName=txtArz.Text.Trim(),Price=decimal.Parse(txtPrice.Text) }))
+            {
+                PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "ثبت با موفقيت انجام شد");
+                LoadData();
+            }
+            else
+            {
+                PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "ثبت با خطا مواجه شد", "e");
+            }
         }
     }
 }
