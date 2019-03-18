@@ -71,14 +71,14 @@
             // ArzDefineToolStripMenuItem
             // 
             this.ArzDefineToolStripMenuItem.Name = "ArzDefineToolStripMenuItem";
-            this.ArzDefineToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ArzDefineToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.ArzDefineToolStripMenuItem.Text = "تعريف ارز";
             this.ArzDefineToolStripMenuItem.Click += new System.EventHandler(this.ArzDefineToolStripMenuItem_Click);
             // 
             // GoodsDefineToolStripMenuItem
             // 
             this.GoodsDefineToolStripMenuItem.Name = "GoodsDefineToolStripMenuItem";
-            this.GoodsDefineToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.GoodsDefineToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.GoodsDefineToolStripMenuItem.Text = "تعريف كالا";
             this.GoodsDefineToolStripMenuItem.Click += new System.EventHandler(this.GoodsDefineToolStripMenuItem_Click);
             // 
@@ -93,8 +93,9 @@
             // ArzReportToolStripMenuItem
             // 
             this.ArzReportToolStripMenuItem.Name = "ArzReportToolStripMenuItem";
-            this.ArzReportToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.ArzReportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ArzReportToolStripMenuItem.Text = "گزارش ارزي";
+            this.ArzReportToolStripMenuItem.Click += new System.EventHandler(this.ArzReportToolStripMenuItem_Click);
             // 
             // pnlFooter
             // 

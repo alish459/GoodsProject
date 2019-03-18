@@ -69,8 +69,6 @@ namespace PersianUI.Controls
         }
         private void NumericTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-                SendKeys.Send("{TAB}");
 
         }
         private void NumericTextBox_Leave(object sender, EventArgs e)

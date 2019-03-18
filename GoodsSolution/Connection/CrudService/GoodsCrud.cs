@@ -54,6 +54,24 @@ namespace Connection.CrudService
                 }
             }
         }
+        public static List<GoodsReportService> ReturnGoodsForReport(string v1, string v2)
+        {
+            using (var context = new Connection.Model.GoodsDBEntities())
+            {
+                return (from read in context.AllGoods.AsNoTracking().Where(a => a.ActDate.CompareTo(v1) >= 0 && a.ActDate.CompareTo(v2) <= 0).ToList()
+                        select new GoodsReportService
+                        {
+                            ActDate = read.ActDate,
+                            ArzPrice = read.ArzPrice,
+                            BuyPrice = read.BuyPrice,
+                            KolPrice = 0,
+                            GoodsName = read.GoodsName,
+                            OtherPrices = read.OtherPrices,
+                            RowID = 0,
+                            ArzName = read.ArzName,
+                        }).ToList();
+            }
+        }
         public static bool Delete(int ID)
         {
             using (var context = new Connection.Model.GoodsDBEntities())

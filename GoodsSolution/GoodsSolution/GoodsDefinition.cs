@@ -28,11 +28,11 @@ namespace GoodsSolution
         private PersianUI.Controls.Buttons.SaveButton saveButtonEdit;
         private PersianUI.Controls.Label label5;
         private PersianUI.Controls.DateControl dateControl;
-        private PersianUI.Controls.NumericTextBoxWithSeperator txtArzPrice;
+        private PersianUI.Controls.FloatTextBox txtArzPrice;
         private PersianUI.Controls.Label label7;
         private PersianUI.Controls.Label label6;
         private PersianUI.Controls.ComboBoxes.ComboBox cmbArz;
-        private PersianUI.Controls.NumericTextBoxWithSeperator txtArzPriceEdit;
+        private PersianUI.Controls.FloatTextBox txtArzPriceEdit;
         private PersianUI.Controls.Label label9;
         private PersianUI.Controls.Label label10;
         private PersianUI.Controls.ComboBoxes.ComboBox cmbArzEdit;
@@ -96,7 +96,7 @@ namespace GoodsSolution
             dataGridView1.Columns["OtherPrices"].Width = 110;
             dataGridView1.Columns["BuyPrice"].DefaultCellStyle.Format = "N0";
             dataGridView1.Columns["OtherPrices"].DefaultCellStyle.Format = "N0";
-            dataGridView1.Columns["ArzPrice"].DefaultCellStyle.Format = "N0";
+            dataGridView1.Columns["ArzPrice"].DefaultCellStyle.Format = "0.##";
             foreach (var item in typeof(Connection.Model.AllGoods).GetProperties())
             {
                 dataGridView1.Columns["GoodsName"].DisplayIndex = 0;
@@ -115,7 +115,7 @@ namespace GoodsSolution
             this.txtOtherPrice = new PersianUI.Controls.NumericTextBoxWithSeperator();
             this.saveButton = new PersianUI.Controls.Buttons.SaveButton();
             this.label11 = new PersianUI.Controls.Label();
-            this.txtArzPrice = new PersianUI.Controls.NumericTextBoxWithSeperator();
+            this.txtArzPrice = new PersianUI.Controls.FloatTextBox();
             this.label7 = new PersianUI.Controls.Label();
             this.label6 = new PersianUI.Controls.Label();
             this.cmbArz = new PersianUI.Controls.ComboBoxes.ComboBox();
@@ -131,7 +131,7 @@ namespace GoodsSolution
             this.groupBox2 = new PersianUI.Controls.GroupBox();
             this.txtOtherPriceEdit = new PersianUI.Controls.NumericTextBoxWithSeperator();
             this.label12 = new PersianUI.Controls.Label();
-            this.txtArzPriceEdit = new PersianUI.Controls.NumericTextBoxWithSeperator();
+            this.txtArzPriceEdit = new PersianUI.Controls.FloatTextBox();
             this.label9 = new PersianUI.Controls.Label();
             this.label10 = new PersianUI.Controls.Label();
             this.cmbArzEdit = new PersianUI.Controls.ComboBoxes.ComboBox();
@@ -253,7 +253,6 @@ namespace GoodsSolution
             this.txtArzPrice.TabIndex = 4;
             this.txtArzPrice.Text = "0";
             this.txtArzPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtArzPrice.Value = 0D;
             // 
             // label7
             // 
@@ -479,7 +478,6 @@ namespace GoodsSolution
             this.txtArzPriceEdit.TabIndex = 4;
             this.txtArzPriceEdit.Text = "0";
             this.txtArzPriceEdit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtArzPriceEdit.Value = 0D;
             // 
             // label9
             // 
@@ -892,7 +890,7 @@ namespace GoodsSolution
             if (cmbArz.SelectedValue != null)
             {
                 var ArzID = int.Parse(cmbArz.SelectedValue.ToString());
-                txtArzPrice.Text = ResultArz.FirstOrDefault(a=>a.ArzID==ArzID).Price.ToString("#,0");
+                txtArzPrice.Text = ResultArz.FirstOrDefault(a=>a.ArzID==ArzID).Price.ToString("0.##");
             }
         }
         private void DataGridView1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -917,7 +915,7 @@ namespace GoodsSolution
                 cmbArzEdit.ValueMember = "ArzID";
                 cmbArzEdit.DisplayMember = "ArzName";
                 txtNakaEdit.Text = ResultEdit.GoodsName;
-                txtArzPriceEdit.Text = ResultEdit.ArzPrice.ToString("#,0");
+                txtArzPriceEdit.Text = ResultEdit.ArzPrice.ToString("0.##");
                 txtBuyPriceEdit.Text = ResultEdit.BuyPrice.ToString("#,0");
                 txtOtherPriceEdit.Text = ResultEdit.OtherPrices.ToString("#,0");
                 cmbArzEdit.SelectedIndex = ResultArzEdit.FindIndex(a => a.ArzID == ResultEdit.ArzID);

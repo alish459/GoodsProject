@@ -42,5 +42,13 @@ namespace GoodsSolution
             };
             pnlMain.Controls.Add(arzDefinition);
         }
+        private void ArzReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GoodsReport arzDefinition = new GoodsReport
+            {
+                Dock = DockStyle.Fill
+            };
+            pnlMain.Controls.Add(arzDefinition);
+        }
     }
 }

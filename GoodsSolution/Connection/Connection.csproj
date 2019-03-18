@@ -106,7 +106,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="GoodsReportService.cs" />
     <Compile Include="CrudService\ArzCrud.cs" />
     <Compile Include="CrudService\GoodsCrud.cs" />
     <Compile Include="Model\AllGoods.cs">

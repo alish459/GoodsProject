@@ -14,7 +14,7 @@ namespace GoodsSolution
         private PersianUI.Controls.Label label1;
         public PersianUI.Controls.TextBoxes.TextBox txtArz;
         private PersianUI.Controls.Label label2;
-        private PersianUI.Controls.NumericTextBoxWithSeperator txtPrice;
+        private PersianUI.Controls.FloatTextBox txtPrice;
         private PersianUI.Controls.GroupBox groupBox2;
         private System.Windows.Forms.Panel panel1;
         private PersianUI.Controls.Buttons.CancelButton cancelButton;
@@ -22,7 +22,7 @@ namespace GoodsSolution
         private System.Windows.Forms.Panel panel2;
         private PersianUI.Controls.Buttons.CancelButton cancelButtonEdit;
         private PersianUI.Controls.Buttons.SaveButton saveButtonEdit;
-        private PersianUI.Controls.NumericTextBoxWithSeperator txtPriceEdit;
+        private PersianUI.Controls.FloatTextBox txtPriceEdit;
         private PersianUI.Controls.Label label3;
         private PersianUI.Controls.TextBoxes.TextBox txtArzEdit;
         private PersianUI.Controls.Label label4;
@@ -59,7 +59,7 @@ namespace GoodsSolution
             this.panel1 = new System.Windows.Forms.Panel();
             this.cancelButton = new PersianUI.Controls.Buttons.CancelButton();
             this.saveButton = new PersianUI.Controls.Buttons.SaveButton();
-            this.txtPrice = new PersianUI.Controls.NumericTextBoxWithSeperator();
+            this.txtPrice = new PersianUI.Controls.FloatTextBox();
             this.label2 = new PersianUI.Controls.Label();
             this.txtArz = new PersianUI.Controls.TextBoxes.TextBox();
             this.label1 = new PersianUI.Controls.Label();
@@ -69,7 +69,7 @@ namespace GoodsSolution
             this.deleteButton = new PersianUI.Controls.Buttons.DeleteButton();
             this.cancelButtonEdit = new PersianUI.Controls.Buttons.CancelButton();
             this.saveButtonEdit = new PersianUI.Controls.Buttons.SaveButton();
-            this.txtPriceEdit = new PersianUI.Controls.NumericTextBoxWithSeperator();
+            this.txtPriceEdit = new PersianUI.Controls.FloatTextBox();
             this.label3 = new PersianUI.Controls.Label();
             this.txtArzEdit = new PersianUI.Controls.TextBoxes.TextBox();
             this.label4 = new PersianUI.Controls.Label();
@@ -169,7 +169,6 @@ namespace GoodsSolution
             this.txtPrice.TabIndex = 1;
             this.txtPrice.Text = "0";
             this.txtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtPrice.Value = 0D;
             // 
             // label2
             // 
@@ -178,9 +177,9 @@ namespace GoodsSolution
             this.label2.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
             this.label2.Location = new System.Drawing.Point(445, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 22);
+            this.label2.Size = new System.Drawing.Size(44, 22);
             this.label2.TabIndex = 2;
-            this.label2.Text = "ارزش ارز به ريال";
+            this.label2.Text = "نرخ ارز";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtArz
@@ -309,7 +308,6 @@ namespace GoodsSolution
             this.txtPriceEdit.TabIndex = 1;
             this.txtPriceEdit.Text = "0";
             this.txtPriceEdit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtPriceEdit.Value = 0D;
             // 
             // label3
             // 
@@ -318,9 +316,9 @@ namespace GoodsSolution
             this.label3.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
             this.label3.Location = new System.Drawing.Point(447, 29);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 22);
+            this.label3.Size = new System.Drawing.Size(44, 22);
             this.label3.TabIndex = 7;
-            this.label3.Text = "ارزش ارز به ريال";
+            this.label3.Text = "نرخ ارز";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtArzEdit
@@ -526,7 +524,7 @@ namespace GoodsSolution
             dataGridView1.Columns["Price"].Width = 200;
             dataGridView1.Columns["ArzID"].Width = 60;
             dataGridView1.Columns["ArzName"].AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns["Price"].DefaultCellStyle.Format = "N0";
+            dataGridView1.Columns["Price"].DefaultCellStyle.Format = "0.##";
             dataGridView1.AutoGenerateColumns = false;
         }
         private void SetActiveRow(PersianUI.Controls.DataGridView DG, System.Windows.Forms.KeyEventArgs e)
@@ -650,7 +648,7 @@ namespace GoodsSolution
                 if (dataGridView1.CurrentRow == null) dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells["ArzName"];
                 ResultEdit = (Connection.Model.Arz)dataGridView1.CurrentRow.DataBoundItem;
                 txtArzEdit.Text = ResultEdit.ArzName;
-                txtPriceEdit.Text = ResultEdit.Price.ToString("#,0");
+                txtPriceEdit.Text = ResultEdit.Price.ToString("0.##");
                 pnlFooter.Visible = true;
                 txtArzEdit.Focus();
             }
