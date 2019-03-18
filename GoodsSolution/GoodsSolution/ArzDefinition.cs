@@ -32,9 +32,11 @@ namespace GoodsSolution
         private System.Threading.Thread threadLoad;
         private PersianUI.Controls.Buttons.DeleteButton deleteButton;
         private System.Threading.ThreadStart threadStartLoad;
+        private List<Connection.Arz> Result = new List<Connection.Arz>(); 
         public ArzDefinition()
         {
             InitializeComponent();
+            Result = 
         }
         private void InitializeComponent()
         {

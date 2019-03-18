@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GoodsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AllGoods">
+          <Key>
+            <PropertyRef Name="GoodsID" />
+          </Key>
+          <Property Name="GoodsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GoodsName" Type="nvarchar" MaxLength="200" />
+          <Property Name="GoodsDefineDate" Type="nvarchar(max)" />
+          <Property Name="ArzID" Type="int" Nullable="false" />
+          <Property Name="BuyPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Arz">
+          <Key>
+            <PropertyRef Name="ArzID" />
+          </Key>
+          <Property Name="ArzID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArzName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ArzPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AllGoods_dbo_Arz_ArzID">
+          <End Role="Arz" Type="Self.Arz" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AllGoods" Type="Self.AllGoods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arz">
+              <PropertyRef Name="ArzID" />
+            </Principal>
+            <Dependent Role="AllGoods">
+              <PropertyRef Name="ArzID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GoodsDBModelStoreContainer">
+          <EntitySet Name="AllGoods" EntityType="Self.AllGoods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Arz" EntityType="Self.Arz" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AllGoods_dbo_Arz_ArzID" Association="Self.FK_dbo_AllGoods_dbo_Arz_ArzID">
+            <End Role="Arz" EntitySet="Arz" />
+            <End Role="AllGoods" EntitySet="AllGoods" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GoodsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AllGoods">
+          <Key>
+            <PropertyRef Name="GoodsID" />
+          </Key>
+          <Property Name="GoodsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GoodsName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="GoodsDefineDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ArzID" Type="Int32" Nullable="false" />
+          <Property Name="BuyPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Arz" Relationship="Self.FK_dbo_AllGoods_dbo_Arz_ArzID" FromRole="AllGoods" ToRole="Arz" />
+        </EntityType>
+        <EntityType Name="Arz">
+          <Key>
+            <PropertyRef Name="ArzID" />
+          </Key>
+          <Property Name="ArzID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArzName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ArzPrice" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="AllGoods" Relationship="Self.FK_dbo_AllGoods_dbo_Arz_ArzID" FromRole="Arz" ToRole="AllGoods" />
+        </EntityType>
+        <Association Name="FK_dbo_AllGoods_dbo_Arz_ArzID">
+          <End Role="Arz" Type="Self.Arz" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AllGoods" Type="Self.AllGoods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arz">
+              <PropertyRef Name="ArzID" />
+            </Principal>
+            <Dependent Role="AllGoods">
+              <PropertyRef Name="ArzID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GoodsDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AllGoods" EntityType="Self.AllGoods" />
+          <EntitySet Name="Arz" EntityType="Self.Arz" />
+          <AssociationSet Name="FK_dbo_AllGoods_dbo_Arz_ArzID" Association="Self.FK_dbo_AllGoods_dbo_Arz_ArzID">
+            <End Role="Arz" EntitySet="Arz" />
+            <End Role="AllGoods" EntitySet="AllGoods" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GoodsDBModelStoreContainer" CdmEntityContainer="GoodsDBEntities">
+          <EntitySetMapping Name="AllGoods">
+            <EntityTypeMapping TypeName="GoodsDBModel.AllGoods">
+              <MappingFragment StoreEntitySet="AllGoods">
+                <ScalarProperty Name="GoodsID" ColumnName="GoodsID" />
+                <ScalarProperty Name="GoodsName" ColumnName="GoodsName" />
+                <ScalarProperty Name="GoodsDefineDate" ColumnName="GoodsDefineDate" />
+                <ScalarProperty Name="ArzID" ColumnName="ArzID" />
+                <ScalarProperty Name="BuyPrice" ColumnName="BuyPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Arz">
+            <EntityTypeMapping TypeName="GoodsDBModel.Arz">
+              <MappingFragment StoreEntitySet="Arz">
+                <ScalarProperty Name="ArzID" ColumnName="ArzID" />
+                <ScalarProperty Name="ArzName" ColumnName="ArzName" />
+                <ScalarProperty Name="ArzPrice" ColumnName="ArzPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

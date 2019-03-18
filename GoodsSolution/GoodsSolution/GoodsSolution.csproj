@@ -109,9 +109,9 @@
       <Project>{0aed2a5c-6b85-4120-8286-8dad4007fb96}</Project>
       <Name>PersianUI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Connecntion\Connecntion.csproj">
-      <Project>{439bdc3c-5feb-473b-8e69-cdd1a222036a}</Project>
-      <Name>Connecntion</Name>
+    <ProjectReference Include="..\Connection\Connection.csproj">
+      <Project>{f5c0e290-0a37-483e-9fde-af0db35f07a8}</Project>
+      <Name>Connection</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

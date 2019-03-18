@@ -52,12 +52,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -77,9 +75,6 @@
       <HintPath>..\..\..\..\..\..\..\DLLs\Microsoft.SqlServer.SmoExtended.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
-    <Reference Include="SadrPosScale">
-      <HintPath>..\Atiran.Main\bin\Debug\SadrPosScale.dll</HintPath>
-    </Reference>
     <Reference Include="Stimulsoft.Base, Version=2012.2.1304.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Stimulsoft Reports.Ultimate 2012.1 Trial\Bin\Stimulsoft.Base.dll</HintPath>
@@ -317,20 +312,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Atiran.Common\Atiran.Common.csproj">
-      <Project>{bf23e85c-dd73-48fe-8ba7-2866efe2a95d}</Project>
-      <Name>Atiran.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Atiran.Connections\Atiran.Connections.csproj">
-      <Project>{c8a50404-2e3d-4d66-8f4e-d4a3bdde3ffc}</Project>
-      <Name>Atiran.Connections</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Atiran.Core\Atiran.Core.csproj">
-      <Project>{71bb34ba-2446-4cd6-af4a-7079d334cef6}</Project>
-      <Name>Atiran.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
