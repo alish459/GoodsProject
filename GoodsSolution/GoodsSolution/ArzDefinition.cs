@@ -15,8 +15,6 @@ namespace GoodsSolution
         public PersianUI.Controls.TextBoxes.TextBox txtArz;
         private PersianUI.Controls.Label label2;
         private PersianUI.Controls.NumericTextBoxWithSeperator txtPrice;
-        private PersianUI.Controls.TextBoxes.TextBox textBox1;
-        private PersianUI.Controls.DataGridView dataGridView1;
         private PersianUI.Controls.GroupBox groupBox2;
         private System.Windows.Forms.Panel panel1;
         private PersianUI.Controls.Buttons.CancelButton cancelButton;
@@ -32,11 +30,18 @@ namespace GoodsSolution
         private System.Threading.Thread threadLoad;
         private PersianUI.Controls.Buttons.DeleteButton deleteButton;
         private System.Threading.ThreadStart threadStartLoad;
+        private PersianUI.Controls.GroupBox groupBox3;
+        private PersianUI.Controls.DataGridView dataGridView1;
+        private PersianUI.Controls.TextBoxes.TextBox txtsearch;
         private List<Connection.Model.Arz> Result = new List<Connection.Model.Arz>();
+        private Connection.Model.Arz ResultEdit = new Connection.Model.Arz();
         public ArzDefinition()
         {
             InitializeComponent();
             LoadData();
+            txtArz.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            txtArzEdit.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            txtsearch.SendTabKey = false;
         }
         private void LoadData()
         {
@@ -45,6 +50,7 @@ namespace GoodsSolution
             Result = Connection.CrudService.ArzCrud.ReturnArz();
             dataGridView1.DataSource = Result;
             txtArz.Focus();
+            SetGrid();
         }
         private void InitializeComponent()
         {
@@ -68,8 +74,9 @@ namespace GoodsSolution
             this.txtArzEdit = new PersianUI.Controls.TextBoxes.TextBox();
             this.label4 = new PersianUI.Controls.Label();
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.groupBox3 = new PersianUI.Controls.GroupBox();
             this.dataGridView1 = new PersianUI.Controls.DataGridView();
-            this.textBox1 = new PersianUI.Controls.TextBoxes.TextBox();
+            this.txtsearch = new PersianUI.Controls.TextBoxes.TextBox();
             this.pnlTop.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -77,6 +84,7 @@ namespace GoodsSolution
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnlMain.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,7 +94,7 @@ namespace GoodsSolution
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(1200, 76);
+            this.pnlTop.Size = new System.Drawing.Size(800, 76);
             this.pnlTop.TabIndex = 0;
             // 
             // groupBox1
@@ -99,7 +107,7 @@ namespace GoodsSolution
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1200, 76);
+            this.groupBox1.Size = new System.Drawing.Size(800, 76);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "تعريف ارز";
@@ -109,7 +117,7 @@ namespace GoodsSolution
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.cancelButton);
             this.panel1.Controls.Add(this.saveButton);
-            this.panel1.Location = new System.Drawing.Point(420, 30);
+            this.panel1.Location = new System.Drawing.Point(20, 30);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 37);
             this.panel1.TabIndex = 2;
@@ -153,7 +161,7 @@ namespace GoodsSolution
             this.txtPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPrice.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
             this.txtPrice.ForeColor = System.Drawing.Color.Black;
-            this.txtPrice.Location = new System.Drawing.Point(632, 38);
+            this.txtPrice.Location = new System.Drawing.Point(232, 38);
             this.txtPrice.Margin = new System.Windows.Forms.Padding(10);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.NextControl = this.saveButton;
@@ -168,7 +176,7 @@ namespace GoodsSolution
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
-            this.label2.Location = new System.Drawing.Point(845, 40);
+            this.label2.Location = new System.Drawing.Point(445, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(88, 22);
             this.label2.TabIndex = 2;
@@ -182,7 +190,7 @@ namespace GoodsSolution
             this.txtArz.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtArz.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
             this.txtArz.ForeColor = System.Drawing.Color.Black;
-            this.txtArz.Location = new System.Drawing.Point(941, 38);
+            this.txtArz.Location = new System.Drawing.Point(541, 38);
             this.txtArz.Margin = new System.Windows.Forms.Padding(10);
             this.txtArz.Name = "txtArz";
             this.txtArz.NextControl = this.txtPrice;
@@ -195,7 +203,7 @@ namespace GoodsSolution
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
-            this.label1.Location = new System.Drawing.Point(1154, 40);
+            this.label1.Location = new System.Drawing.Point(754, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 22);
             this.label1.TabIndex = 0;
@@ -208,7 +216,7 @@ namespace GoodsSolution
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlFooter.Location = new System.Drawing.Point(0, 435);
             this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(1200, 65);
+            this.pnlFooter.Size = new System.Drawing.Size(800, 65);
             this.pnlFooter.TabIndex = 1;
             // 
             // groupBox2
@@ -221,7 +229,7 @@ namespace GoodsSolution
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1200, 65);
+            this.groupBox2.Size = new System.Drawing.Size(800, 65);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "ويرايش ارز تعريف شده";
@@ -232,9 +240,9 @@ namespace GoodsSolution
             this.panel2.Controls.Add(this.deleteButton);
             this.panel2.Controls.Add(this.cancelButtonEdit);
             this.panel2.Controls.Add(this.saveButtonEdit);
-            this.panel2.Location = new System.Drawing.Point(332, 19);
+            this.panel2.Location = new System.Drawing.Point(-38, 19);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(286, 40);
+            this.panel2.Size = new System.Drawing.Size(280, 40);
             this.panel2.TabIndex = 2;
             // 
             // deleteButton
@@ -252,6 +260,7 @@ namespace GoodsSolution
             this.deleteButton.TabIndex = 1;
             this.deleteButton.Text = "حذف";
             this.deleteButton.UseVisualStyleBackColor = false;
+            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // cancelButtonEdit
             // 
@@ -283,6 +292,7 @@ namespace GoodsSolution
             this.saveButtonEdit.TabIndex = 0;
             this.saveButtonEdit.Text = "ثبت";
             this.saveButtonEdit.UseVisualStyleBackColor = false;
+            this.saveButtonEdit.Click += new System.EventHandler(this.SaveButtonEdit_Click);
             // 
             // txtPriceEdit
             // 
@@ -291,10 +301,10 @@ namespace GoodsSolution
             this.txtPriceEdit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPriceEdit.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
             this.txtPriceEdit.ForeColor = System.Drawing.Color.Black;
-            this.txtPriceEdit.Location = new System.Drawing.Point(630, 27);
+            this.txtPriceEdit.Location = new System.Drawing.Point(246, 27);
             this.txtPriceEdit.Margin = new System.Windows.Forms.Padding(10);
             this.txtPriceEdit.Name = "txtPriceEdit";
-            this.txtPriceEdit.NextControl = null;
+            this.txtPriceEdit.NextControl = this.saveButtonEdit;
             this.txtPriceEdit.Size = new System.Drawing.Size(200, 29);
             this.txtPriceEdit.TabIndex = 1;
             this.txtPriceEdit.Text = "0";
@@ -306,7 +316,7 @@ namespace GoodsSolution
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
-            this.label3.Location = new System.Drawing.Point(843, 29);
+            this.label3.Location = new System.Drawing.Point(447, 29);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 22);
             this.label3.TabIndex = 7;
@@ -320,10 +330,10 @@ namespace GoodsSolution
             this.txtArzEdit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtArzEdit.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
             this.txtArzEdit.ForeColor = System.Drawing.Color.Black;
-            this.txtArzEdit.Location = new System.Drawing.Point(939, 27);
+            this.txtArzEdit.Location = new System.Drawing.Point(539, 27);
             this.txtArzEdit.Margin = new System.Windows.Forms.Padding(10);
             this.txtArzEdit.Name = "txtArzEdit";
-            this.txtArzEdit.NextControl = null;
+            this.txtArzEdit.NextControl = this.txtPriceEdit;
             this.txtArzEdit.Size = new System.Drawing.Size(200, 29);
             this.txtArzEdit.TabIndex = 0;
             this.txtArzEdit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -333,7 +343,7 @@ namespace GoodsSolution
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
-            this.label4.Location = new System.Drawing.Point(1152, 29);
+            this.label4.Location = new System.Drawing.Point(752, 29);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 22);
             this.label4.TabIndex = 5;
@@ -342,13 +352,24 @@ namespace GoodsSolution
             // 
             // pnlMain
             // 
-            this.pnlMain.Controls.Add(this.dataGridView1);
-            this.pnlMain.Controls.Add(this.textBox1);
+            this.pnlMain.Controls.Add(this.groupBox3);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 76);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1200, 359);
+            this.pnlMain.Size = new System.Drawing.Size(800, 359);
             this.pnlMain.TabIndex = 2;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.Controls.Add(this.txtsearch);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(0, 0);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(800, 359);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "ارزهاي تعريف شده";
             // 
             // dataGridView1
             // 
@@ -359,28 +380,33 @@ namespace GoodsSolution
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
-            this.dataGridView1.Location = new System.Drawing.Point(0, 29);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 54);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(1200, 330);
-            this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(794, 302);
+            this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataGridView1_KeyDown);
             // 
-            // textBox1
+            // txtsearch
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox1.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
-            this.textBox1.ForeColor = System.Drawing.Color.Black;
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(10);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.NextControl = null;
-            this.textBox1.Size = new System.Drawing.Size(1200, 29);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtsearch.BackColor = System.Drawing.Color.White;
+            this.txtsearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtsearch.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtsearch.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
+            this.txtsearch.ForeColor = System.Drawing.Color.Black;
+            this.txtsearch.Location = new System.Drawing.Point(3, 25);
+            this.txtsearch.Margin = new System.Windows.Forms.Padding(10);
+            this.txtsearch.Name = "txtsearch";
+            this.txtsearch.NextControl = null;
+            this.txtsearch.Size = new System.Drawing.Size(794, 29);
+            this.txtsearch.TabIndex = 4;
+            this.txtsearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtsearch.TextChanged += new System.EventHandler(this.Txtsearch_TextChanged);
+            this.txtsearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsearch_KeyDown);
             // 
             // ArzDefinition
             // 
@@ -389,7 +415,7 @@ namespace GoodsSolution
             this.Controls.Add(this.pnlTop);
             this.Name = "ArzDefinition";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Size = new System.Drawing.Size(1200, 500);
+            this.Size = new System.Drawing.Size(800, 500);
             this.pnlTop.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -399,7 +425,8 @@ namespace GoodsSolution
             this.groupBox2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.pnlMain.ResumeLayout(false);
-            this.pnlMain.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -456,6 +483,7 @@ namespace GoodsSolution
         private void CancelButtonEdit_Click(object sender, EventArgs e)
         {
             pnlFooter.Visible = false;
+            txtsearch.Focus();
         }
         private void CancelButton_Click(object sender, EventArgs e)
         {
@@ -463,17 +491,17 @@ namespace GoodsSolution
         }
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (txtArz.Text.Trim()==string.Empty)
+            if (txtArz.Text.Trim() == string.Empty)
             {
                 PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "نام ارز نمي‌تواند خالي باشد", "e");
                 return;
             }
-            if (txtPrice.Text=="0")
+            if (txtPrice.Text == "0")
             {
                 PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "مبلغ ارز نمي‌تواند خالي باشد", "e");
                 return;
             }
-            if (Connection.CrudService.ArzCrud.Create(new Connection.Model.Arz() {ArzName=txtArz.Text.Trim(),Price=decimal.Parse(txtPrice.Text) }))
+            if (Connection.CrudService.ArzCrud.Create(new Connection.Model.Arz() { ArzName = txtArz.Text.Trim(), Price = decimal.Parse(txtPrice.Text) }))
             {
                 PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "ثبت با موفقيت انجام شد");
                 LoadData();
@@ -481,6 +509,200 @@ namespace GoodsSolution
             else
             {
                 PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "ثبت با خطا مواجه شد", "e");
+            }
+        }
+        private void SetGrid()
+        {
+            foreach (System.Windows.Forms.DataGridViewColumn item in dataGridView1.Columns)
+            {
+                item.Visible = false;
+            }
+            dataGridView1.Columns["ArzID"].Visible = true;
+            dataGridView1.Columns["ArzName"].Visible = true;
+            dataGridView1.Columns["Price"].Visible = true;
+            dataGridView1.Columns["ArzID"].HeaderText = "رديف";
+            dataGridView1.Columns["ArzName"].HeaderText = "نام ارز";
+            dataGridView1.Columns["Price"].HeaderText = "مبلغ";
+            dataGridView1.Columns["Price"].Width = 200;
+            dataGridView1.Columns["ArzID"].Width = 60;
+            dataGridView1.Columns["ArzName"].AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns["Price"].DefaultCellStyle.Format = "N0";
+            dataGridView1.AutoGenerateColumns = false;
+        }
+        private void SetActiveRow(PersianUI.Controls.DataGridView DG, System.Windows.Forms.KeyEventArgs e)
+        {
+            try
+            {
+                string ColName = "ArzName";
+                int selected = 0;
+                if (DG.RowCount > 0)
+                {
+                    if (DG.CurrentRow == null)
+                    {
+                        DG.CurrentCell = DG.Rows[0].Cells[ColName];
+                    }
+                    else
+                    {
+                        selected = DG.CurrentRow.Index;
+                    }
+                }
+
+                if (txtsearch.Text.StartsWith(" "))
+                {
+                    txtsearch.Text = "";
+                }
+                if (e.KeyCode == System.Windows.Forms.Keys.Down && DG.RowCount > 0)
+                {
+                    if (selected < DG.Rows.Count - 1)
+                        DG.CurrentCell = DG.Rows[selected + 1].Cells[ColName];
+                    else
+                        DG.CurrentCell = DG.Rows[0].Cells[ColName];
+                    System.Windows.Forms.SendKeys.Send("{END}");
+                }
+                else if (e.KeyCode == System.Windows.Forms.Keys.Up && DG.RowCount > 0)
+                {
+                    if (selected > 0)
+                        DG.CurrentCell = DG.Rows[selected - 1].Cells[ColName];
+                    else
+                        DG.CurrentCell = DG.Rows[DG.Rows.Count - 1].Cells[ColName];
+                    System.Windows.Forms.SendKeys.Send("{END}");
+                }
+                else if (e.KeyCode == System.Windows.Forms.Keys.PageDown)
+                {
+                    DG.Focus();
+                    txtsearch.Focus();
+                    if (DG.RowCount > 0)
+                    {
+                        int CountRows = DG.RowCount;
+                        int CurrentPosition = DG.CurrentRow.Index;
+                        int NextPosition = CurrentPosition + 10;
+                        int RemainTolast = (CountRows - 1) - CurrentPosition;
+                        if (CurrentPosition < CountRows - 1)
+                        {
+                            if (NextPosition < CountRows - 1)
+                            {
+                                DG.Rows[DG.CurrentRow.Index].Selected = false;
+                                DG.Rows[DG.CurrentRow.Index + 10].Selected = true;
+                                DG.CurrentCell = DG.Rows[DG.CurrentRow.Index + 10].Cells[ColName];
+                            }
+                            else
+                            {
+                                DG.Rows[DG.CurrentRow.Index].Selected = false;
+                                DG.Rows[DG.CurrentRow.Index + RemainTolast].Selected = true;
+                                DG.CurrentCell = DG.Rows[DG.CurrentRow.Index + RemainTolast].Cells[ColName];
+                            }
+
+                        }
+                    }
+                    System.Windows.Forms.SendKeys.Send("{END}");
+                }
+                else if (e.KeyCode == System.Windows.Forms.Keys.PageUp)
+                {
+                    DG.Focus();
+                    txtsearch.Focus();
+                    if (DG.RowCount > 0)
+                    {
+                        int CountRows = DG.RowCount;
+                        int CurrentPosition = DG.CurrentRow.Index;
+                        int NextPosition = CurrentPosition - 10;
+                        int RemainToFirst = CurrentPosition;
+                        if (CurrentPosition > 0)
+                        {
+                            if (RemainToFirst > 10)
+                            {
+                                DG.Rows[DG.CurrentRow.Index].Selected = false;
+                                DG.Rows[DG.CurrentRow.Index - 10].Selected = true;
+                                DG.CurrentCell = DG.Rows[DG.CurrentRow.Index - 10].Cells[ColName];
+                            }
+                            else
+                            {
+                                DG.Rows[DG.CurrentRow.Index].Selected = false;
+                                DG.Rows[DG.CurrentRow.Index - RemainToFirst].Selected = true;
+                                DG.CurrentCell = DG.Rows[DG.CurrentRow.Index - RemainToFirst].Cells[ColName];
+                            }
+
+                        }
+                    }
+                    System.Windows.Forms.SendKeys.Send("{END}");
+                }
+                else if (e.KeyCode == System.Windows.Forms.Keys.Enter)
+                {
+                    OpenAct();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+        }
+        private void Txtsearch_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            SetActiveRow(dataGridView1, e);
+        }
+        private void Txtsearch_TextChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = txtsearch.Text.Trim() == string.Empty ? Result : Result.Where(a => a.ArzName.Contains(txtsearch.Text.Trim())).ToList();
+        }
+        private void OpenAct()
+        {
+            if (dataGridView1.RowCount > 0)
+            {
+                if (dataGridView1.CurrentRow == null) dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells["ArzName"];
+                ResultEdit = (Connection.Model.Arz)dataGridView1.CurrentRow.DataBoundItem;
+                txtArzEdit.Text = ResultEdit.ArzName;
+                txtPriceEdit.Text = ResultEdit.Price.ToString("#,0");
+                pnlFooter.Visible = true;
+                txtArzEdit.Focus();
+            }
+        }
+        private void DataGridView1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == System.Windows.Forms.Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                OpenAct();
+            }
+        }
+        private void DataGridView1_CellDoubleClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        {
+            OpenAct();
+        }
+        private void SaveButtonEdit_Click(object sender, EventArgs e)
+        {
+            if (txtArzEdit.Text.Trim() == string.Empty)
+            {
+                PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "نام ارز نمي‌تواند خالي باشد", "e");
+                return;
+            }
+            if (txtPriceEdit.Text == "0")
+            {
+                PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "مبلغ ارز نمي‌تواند خالي باشد", "e");
+                return;
+            }
+            if (Connection.CrudService.ArzCrud.Update(new Connection.Model.Arz() { ArzID = ResultEdit.ArzID, ArzName = txtArzEdit.Text.Trim(), Price = decimal.Parse(txtPriceEdit.Text) }))
+            {
+                PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "ويرايش با موفقيت انجام شد");
+                LoadData();
+            }
+            else
+            {
+                PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "ثبت با خطا مواجه شد", "e");
+            }
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام","آيا از حذف اطمينان داريد؟","w")==System.Windows.Forms.DialogResult.Yes)
+            {
+                if (Connection.CrudService.ArzCrud.Delete(ResultEdit.ArzID))
+                {
+                    PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "حذف با موفقيت انجام شد");
+                    LoadData();
+                }
+                else
+                {
+                    PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "حذف با خطا مواجه شد", "e");
+                }
             }
         }
     }

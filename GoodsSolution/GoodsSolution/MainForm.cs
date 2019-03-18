@@ -33,5 +33,14 @@ namespace GoodsSolution
             arzDefinition.txtArz.Focus();
             pnlMain.Controls.Add(arzDefinition);
         }
+
+        private void GoodsDefineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GoodsDefinition arzDefinition = new GoodsDefinition
+            {
+                Dock = DockStyle.Fill
+            };
+            pnlMain.Controls.Add(arzDefinition);
+        }
     }
 }

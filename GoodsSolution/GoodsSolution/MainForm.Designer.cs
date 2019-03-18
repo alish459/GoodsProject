@@ -55,7 +55,7 @@
             this.menuStripMain.Name = "menuStripMain";
             this.menuStripMain.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
             this.menuStripMain.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menuStripMain.Size = new System.Drawing.Size(1184, 25);
+            this.menuStripMain.Size = new System.Drawing.Size(784, 25);
             this.menuStripMain.TabIndex = 0;
             this.menuStripMain.Text = "menuStrip1";
             // 
@@ -71,15 +71,16 @@
             // ArzDefineToolStripMenuItem
             // 
             this.ArzDefineToolStripMenuItem.Name = "ArzDefineToolStripMenuItem";
-            this.ArzDefineToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ArzDefineToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ArzDefineToolStripMenuItem.Text = "تعريف ارز";
             this.ArzDefineToolStripMenuItem.Click += new System.EventHandler(this.ArzDefineToolStripMenuItem_Click);
             // 
             // GoodsDefineToolStripMenuItem
             // 
             this.GoodsDefineToolStripMenuItem.Name = "GoodsDefineToolStripMenuItem";
-            this.GoodsDefineToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.GoodsDefineToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.GoodsDefineToolStripMenuItem.Text = "تعريف كالا";
+            this.GoodsDefineToolStripMenuItem.Click += new System.EventHandler(this.GoodsDefineToolStripMenuItem_Click);
             // 
             // HeaderTwoToolStripMenuItem
             // 
@@ -98,21 +99,17 @@
             // pnlFooter
             // 
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooter.Location = new System.Drawing.Point(0, 507);
+            this.pnlFooter.Location = new System.Drawing.Point(0, 407);
             this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(1184, 54);
+            this.pnlFooter.Size = new System.Drawing.Size(784, 54);
             this.pnlFooter.TabIndex = 1;
             this.pnlFooter.Visible = false;
-            // 
-            // pnlMain
-            // 
-          
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 561);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.pnlFooter);
             this.Controls.Add(this.menuStripMain);
             this.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));

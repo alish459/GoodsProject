@@ -24,49 +24,31 @@ namespace PersianUI.Controls.ComboBoxes
           
             
         }
-
         private void ComboBox_KeyPress(object sender, KeyPressEventArgs e)
         {
            
         }
-
         private void ComboBox_GotFocus(object sender, EventArgs e)
         {
             this.BackColor = Color.FromArgb(225, 174, 0);
         }
-
         private void ComboBox_LostFocus(object sender, EventArgs e)
         {
             this.BackColor = Color.White;
         }
-
-
-
         private void ComboBox_KeyDown(object sender, KeyEventArgs e)
     {
             //if (e.KeyCode == Keys.Enter)
             //    SendKeys.Send("{TAB}");
             if (e.KeyCode == Keys.Enter)
             {
-                if (NextControl != null)
-                {
-                    if (!NextControl.Enabled)
-                    {
-                        SetNextControl((ComboBox)sender);
-                    }
-                    else
-                    {
-                        NextControl.Focus();
-                    }
-                }
+                SendKeys.Send("{TAB}");
             }
         }
         private void SetNextControl(ComboBox NextControl)
         {
             SendKeys.Send("{TAB}");
         }
-
-
         private void InitializeUI()
         {
             this.AutoSize = true;

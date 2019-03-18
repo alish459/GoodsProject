@@ -155,7 +155,7 @@ namespace PersianUI.Controls
         {
             if (e.KeyCode == Keys.Enter)
             {
-                this.Year.Focus();
+
             }
             else
             {
@@ -170,9 +170,6 @@ namespace PersianUI.Controls
         {
             if (e.KeyCode == Keys.Enter && Day.Focused)
             {
-                Month.Focus();
-                Month.Focus();
-                Month.Select(0, 3);
             }
             else
             {

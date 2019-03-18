@@ -5,6 +5,19 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="GoodsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AllGoods">
+          <Key>
+            <PropertyRef Name="GoodsID" />
+          </Key>
+          <Property Name="GoodsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GoodsName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ActDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ArzID" Type="int" Nullable="false" />
+          <Property Name="BuyPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="OtherPrices" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ArzName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ArzPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
         <EntityType Name="Arz">
           <Key>
             <PropertyRef Name="ArzID" />
@@ -14,6 +27,7 @@
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityContainer Name="GoodsDBModelStoreContainer">
+          <EntitySet Name="AllGoods" EntityType="Self.AllGoods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Arz" EntityType="Self.Arz" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -22,6 +36,7 @@
       <Schema Namespace="GoodsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="GoodsDBEntities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="Arz" EntityType="GoodsDBModel.Arz" />
+          <EntitySet Name="AllGoods" EntityType="GoodsDBModel.AllGoods" />
         </EntityContainer>
         <EntityType Name="Arz">
           <Key>
@@ -30,6 +45,19 @@
           <Property Name="ArzID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ArzName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="AllGoods">
+          <Key>
+            <PropertyRef Name="GoodsID" />
+          </Key>
+          <Property Name="GoodsID" Type="Int32" Nullable="false" />
+          <Property Name="GoodsName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ActDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ArzID" Type="Int32" Nullable="false" />
+          <Property Name="BuyPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="OtherPrices" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ArzName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ArzPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -43,6 +71,20 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="ArzName" ColumnName="ArzName" />
                 <ScalarProperty Name="ArzID" ColumnName="ArzID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AllGoods">
+            <EntityTypeMapping TypeName="GoodsDBModel.AllGoods">
+              <MappingFragment StoreEntitySet="AllGoods">
+                <ScalarProperty Name="ArzPrice" ColumnName="ArzPrice" />
+                <ScalarProperty Name="ArzName" ColumnName="ArzName" />
+                <ScalarProperty Name="OtherPrices" ColumnName="OtherPrices" />
+                <ScalarProperty Name="BuyPrice" ColumnName="BuyPrice" />
+                <ScalarProperty Name="ArzID" ColumnName="ArzID" />
+                <ScalarProperty Name="ActDate" ColumnName="ActDate" />
+                <ScalarProperty Name="GoodsName" ColumnName="GoodsName" />
+                <ScalarProperty Name="GoodsID" ColumnName="GoodsID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

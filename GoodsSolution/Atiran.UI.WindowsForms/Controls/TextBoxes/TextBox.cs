@@ -9,7 +9,7 @@ namespace PersianUI.Controls.TextBoxes
     {
         public System.Windows.Forms.Control NextControl { get; set; }
         public bool HavingStar = false;
-        public bool SendTabKey = false;
+        public bool SendTabKey = true;
         public Color EnterBackColor = Color.FromArgb(225, 174, 0);
         public Color LeaveBaCkColor = Color.White;
         public Color EnterForColor = Color.Black;
@@ -85,17 +85,7 @@ namespace PersianUI.Controls.TextBoxes
             //SendKeys.Send("{TAB}");
             if (e.KeyChar == (char)13)
             {
-                if (NextControl != null)
-                {
-                    if (!NextControl.Enabled || SendTabKey)
-                    {
-                        SetNextControl((TextBox)sender);
-                    }
-                    else
-                    {
-                        NextControl.Focus();
-                    }
-                }
+               if(SendTabKey) SendKeys.Send("{TAB}");
             }
 
         }

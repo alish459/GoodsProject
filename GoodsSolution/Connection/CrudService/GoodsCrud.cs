@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace Connection.CrudService
 {
-    public class ArzCrud
+    public class GoodsCrud
     {
-        public static List<Connection.Model.Arz> ReturnArz()
+        public static List<Connection.Model.AllGoods> ReturnAllGoods()
         {
             using (var context = new Connection.Model.GoodsDBEntities())
             {
-                return context.Arz.AsNoTracking().ToList();
+                return context.AllGoods.AsNoTracking().ToList();
             }
         }
-        public static bool Create(Connection.Model.Arz ArzInstance)
+        public static bool Create(Connection.Model.AllGoods AllGoodsInstance)
         {
             using (var context = new Connection.Model.GoodsDBEntities())
             {
                 try
                 {
-                    context.Arz.Add(ArzInstance);
+                    context.AllGoods.Add(AllGoodsInstance);
                     context.SaveChanges();
                     return true;
                 }
@@ -32,15 +32,18 @@ namespace Connection.CrudService
                 }
             }
         }
-        public static bool Update(Connection.Model.Arz ObjectName)
+        public static bool Update(Connection.Model.AllGoods ObjectName)
         {
             using (var context = new Connection.Model.GoodsDBEntities())
             {
                 try
                 {
-                    var Ins = context.Arz.Where(a => a.ArzID == ObjectName.ArzID).FirstOrDefault();
-                    Ins.ArzName = ObjectName.ArzName;
-                    Ins.Price = ObjectName.Price;
+                    var Ins = context.AllGoods.Where(a => a.GoodsID == ObjectName.GoodsID).FirstOrDefault();
+                    Ins.ActDate = ObjectName.ActDate;
+                    Ins.ArzID = ObjectName.ArzID;
+                    Ins.BuyPrice = ObjectName.BuyPrice;
+                    Ins.GoodsName = ObjectName.GoodsName;
+                    Ins.OtherPrices = ObjectName.OtherPrices;
                     context.SaveChanges();
                     return true;
                 }
@@ -57,7 +60,7 @@ namespace Connection.CrudService
             {
                 try
                 {
-                    context.Arz.Remove(context.Arz.Find(ID));
+                    context.AllGoods.Remove(context.AllGoods.Find(ID));
                     context.SaveChanges();
                     return true;
                 }

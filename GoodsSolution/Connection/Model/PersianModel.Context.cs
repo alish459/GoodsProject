@@ -26,5 +26,6 @@ namespace Connection.Model
         }
     
         public DbSet<Arz> Arz { get; set; }
+        public DbSet<AllGoods> AllGoods { get; set; }
     }
 }
