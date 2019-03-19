@@ -278,6 +278,7 @@ namespace GoodsSolution
             this.printButton2.TabIndex = 12;
             this.printButton2.Text = "ارسال به اكسل";
             this.printButton2.UseVisualStyleBackColor = false;
+            this.printButton2.Click += new System.EventHandler(this.PrintButton2_Click);
             // 
             // printButton1
             // 
@@ -385,10 +386,89 @@ namespace GoodsSolution
             dataGridView1.DataSource = Result;
             lblResult.Text = $"تعداد : {Result.Count.ToString("#,0")}    جمع هزينه‌ها : {Result.Sum(a => a.OtherPrices).ToString("#,0")}    جمع مبالغ كل : {Result.Sum(a => a.KolPrice).ToString("#,0")}";
         }
-
         private void PrintButton1_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Stimulsoft.Report.StiReport rpt = new Stimulsoft.Report.StiReport();
+                string startupPath = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath);
+                rpt.Load(startupPath + "\\Reports\\GoodsReport.mrt");
+                rpt.Dictionary.Variables["today"].Value = DateTodayFullChar();
+                rpt.RegBusinessObject("Goods", (List<Connection.GoodsReportService>)dataGridView1.DataSource);
+                rpt.Render();
+                rpt.Show();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+        }
+        public string DateTodayFullChar()
+        {
+            string today;
+            System.Globalization.PersianCalendar pc = new System.Globalization.PersianCalendar();
+            int M = pc.GetMonth(DateTime.Now);
+            int d = pc.GetDayOfMonth(DateTime.Now);
+            today = pc.GetYear(DateTime.Now).ToString() + "/";
+            if (M < 10)
+                today += "0" + M.ToString() + "/";
+            else
+                today += M.ToString() + "/";
+            if (d < 10)
+                today += "0" + d.ToString();
+            else
+                today += d.ToString();
+            return today;
+        }
+        private void PrintButton2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                excel.Visible = true;
+                Microsoft.Office.Interop.Excel.Workbook workbook = excel.Workbooks.Add(System.Reflection.Missing.Value);
+                Microsoft.Office.Interop.Excel.Worksheet sheet1 = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Sheets[1];
+                int StartCol = 1;
+                int StartRow = 1;
+                int j = 0, i = 0;
 
+                //Write Headers
+                for (j = 0; j < dataGridView1.Columns.Count; j++)
+                {
+                    Microsoft.Office.Interop.Excel.Range myRange = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[StartRow, StartCol + j];
+                    myRange.Value2 = dataGridView1.Columns[j].HeaderText;
+                }
+
+                StartRow++;
+
+                //Write datagridview content
+                for (i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    for (j = 0; j < dataGridView1.Columns.Count; j++)
+                    {
+                        try
+                        {
+                            Microsoft.Office.Interop.Excel.Range myRange = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[StartRow + i, StartCol + j];
+                            myRange.Value2 = dataGridView1[j, i].Value == null ? "" : dataGridView1[j, i].Value;
+                        }
+                        catch
+                        {
+                            ;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+        private void CopyAlltoClipboard(System.Windows.Forms.DataGridView dg)
+        {
+            dg.SelectAll();
+            System.Windows.Forms.DataObject dataObj = dg.GetClipboardContent();
+            //if (dataObj != null)
+            //System.Windows.Clipboard.SetDataObject(dataObj);
         }
     }
 }
