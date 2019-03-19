@@ -59,11 +59,12 @@ namespace Connection.CrudService
         {
             using (var context = new Connection.Model.GoodsDBEntities())
             {
-                return (from read in context.AllGoods.AsNoTracking().Where(a => a.ActDate.CompareTo(v1) >= 0 && a.ActDate.CompareTo(v2) <= 0).ToList()
+                return (from read in context.AllGoods.AsNoTracking().Where(a => a.ActDate.CompareTo(v1) >= 0 && a.ActDate.CompareTo(v2) <= 0)
+                        join read2 in context.Arz on read.ArzID equals read2.ArzID
                         select new GoodsReportService
                         {
                             ActDate = read.ActDate,
-                            ArzPrice = read.ArzPrice,
+                            ArzPrice = read2.Price,
                             BuyPrice = read.BuyPrice,
                             KolPrice = 0,
                             GoodsName = read.GoodsName,

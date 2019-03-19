@@ -41,6 +41,7 @@ namespace GoodsSolution
             LoadData();
             txtArz.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             txtArzEdit.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            txtsearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             txtsearch.SendTabKey = false;
         }
         private void LoadData()

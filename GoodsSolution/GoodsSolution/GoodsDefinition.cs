@@ -55,6 +55,7 @@ namespace GoodsSolution
         {
             InitializeComponent();
             LoadData();
+            txtsearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
         }
         private void LoadData()
         {
@@ -81,7 +82,7 @@ namespace GoodsSolution
             dataGridView1.Columns["ArzName"].Visible = true;
             dataGridView1.Columns["BuyPrice"].Visible = true;
             dataGridView1.Columns["OtherPrices"].Visible = true;
-            dataGridView1.Columns["ArzPrice"].Visible = true;
+            dataGridView1.Columns["ArzPrice"].Visible = false;
             dataGridView1.Columns["GoodsName"].HeaderText = "نام كالا";
             dataGridView1.Columns["ActDate"].HeaderText = "تاريخ";
             dataGridView1.Columns["ArzPrice"].HeaderText = "نرخ ارز";
@@ -249,6 +250,7 @@ namespace GoodsSolution
             this.txtArzPrice.Margin = new System.Windows.Forms.Padding(10);
             this.txtArzPrice.Name = "txtArzPrice";
             this.txtArzPrice.NextControl = this.saveButton;
+            this.txtArzPrice.ReadOnly = true;
             this.txtArzPrice.Size = new System.Drawing.Size(172, 29);
             this.txtArzPrice.TabIndex = 4;
             this.txtArzPrice.Text = "0";
@@ -474,6 +476,7 @@ namespace GoodsSolution
             this.txtArzPriceEdit.Margin = new System.Windows.Forms.Padding(10);
             this.txtArzPriceEdit.Name = "txtArzPriceEdit";
             this.txtArzPriceEdit.NextControl = this.saveButton;
+            this.txtArzPriceEdit.ReadOnly = true;
             this.txtArzPriceEdit.Size = new System.Drawing.Size(172, 29);
             this.txtArzPriceEdit.TabIndex = 4;
             this.txtArzPriceEdit.Text = "0";

@@ -22,7 +22,7 @@ namespace GoodsSolution
         private PersianUI.Controls.Buttons.DisplayButton displayButton;
         private PersianUI.Controls.Buttons.CancelButton cancelButton;
         private System.Windows.Forms.Panel panel2;
-        private PersianUI.Controls.Label label2;
+        private PersianUI.Controls.Label lblResult;
         private PersianUI.Controls.Buttons.PrintButton printButton2;
         private PersianUI.Controls.Buttons.PrintButton printButton1;
         private System.Windows.Forms.Panel pnlMain;
@@ -30,7 +30,7 @@ namespace GoodsSolution
         public GoodsReport()
         {
             InitializeComponent();
-            
+            txtsearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             dataGridView1.DataSource = new List<Connection.GoodsReportService>();
             SetGrid();
         }
@@ -89,7 +89,7 @@ namespace GoodsSolution
             this.label5 = new PersianUI.Controls.Label();
             this.fromDate = new PersianUI.Controls.DateControl();
             this.pnlFooter = new System.Windows.Forms.Panel();
-            this.label2 = new PersianUI.Controls.Label();
+            this.lblResult = new PersianUI.Controls.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.printButton2 = new PersianUI.Controls.Buttons.PrintButton();
             this.printButton1 = new PersianUI.Controls.Buttons.PrintButton();
@@ -113,7 +113,7 @@ namespace GoodsSolution
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(800, 65);
+            this.pnlTop.Size = new System.Drawing.Size(800, 70);
             this.pnlTop.TabIndex = 0;
             // 
             // groupBox1
@@ -126,7 +126,7 @@ namespace GoodsSolution
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(800, 65);
+            this.groupBox1.Size = new System.Drawing.Size(800, 70);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "برآورد هزينه";
@@ -136,7 +136,7 @@ namespace GoodsSolution
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.displayButton);
             this.panel1.Controls.Add(this.cancelButton);
-            this.panel1.Location = new System.Drawing.Point(195, 14);
+            this.panel1.Location = new System.Drawing.Point(195, 29);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 37);
             this.panel1.TabIndex = 2;
@@ -178,7 +178,7 @@ namespace GoodsSolution
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
-            this.label1.Location = new System.Drawing.Point(542, 25);
+            this.label1.Location = new System.Drawing.Point(542, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 22);
             this.label1.TabIndex = 8;
@@ -190,7 +190,7 @@ namespace GoodsSolution
             this.toDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.toDate.CanGoBackward = true;
             this.toDate.CanGoForward = false;
-            this.toDate.Location = new System.Drawing.Point(408, 25);
+            this.toDate.Location = new System.Drawing.Point(408, 40);
             this.toDate.Name = "toDate";
             this.toDate.NextControl = null;
             this.toDate.NowShamsi10Cahracter = "1397/12/27";
@@ -207,7 +207,7 @@ namespace GoodsSolution
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
-            this.label5.Location = new System.Drawing.Point(729, 25);
+            this.label5.Location = new System.Drawing.Point(729, 40);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 22);
             this.label5.TabIndex = 6;
@@ -219,7 +219,7 @@ namespace GoodsSolution
             this.fromDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromDate.CanGoBackward = true;
             this.fromDate.CanGoForward = false;
-            this.fromDate.Location = new System.Drawing.Point(604, 25);
+            this.fromDate.Location = new System.Drawing.Point(604, 40);
             this.fromDate.Name = "fromDate";
             this.fromDate.NextControl = null;
             this.fromDate.NowShamsi10Cahracter = "1397/12/27";
@@ -233,7 +233,7 @@ namespace GoodsSolution
             // 
             // pnlFooter
             // 
-            this.pnlFooter.Controls.Add(this.label2);
+            this.pnlFooter.Controls.Add(this.lblResult);
             this.pnlFooter.Controls.Add(this.panel2);
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlFooter.Location = new System.Drawing.Point(0, 456);
@@ -241,17 +241,17 @@ namespace GoodsSolution
             this.pnlFooter.Size = new System.Drawing.Size(800, 44);
             this.pnlFooter.TabIndex = 1;
             // 
-            // label2
+            // lblResult
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label2.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
-            this.label2.Location = new System.Drawing.Point(732, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 22);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "توضيحات :";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblResult.AutoSize = true;
+            this.lblResult.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblResult.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
+            this.lblResult.Location = new System.Drawing.Point(732, 0);
+            this.lblResult.Name = "lblResult";
+            this.lblResult.Size = new System.Drawing.Size(68, 22);
+            this.lblResult.TabIndex = 11;
+            this.lblResult.Text = "توضيحات :";
+            this.lblResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
@@ -294,14 +294,15 @@ namespace GoodsSolution
             this.printButton1.TabIndex = 11;
             this.printButton1.Text = "چاپ";
             this.printButton1.UseVisualStyleBackColor = false;
+            this.printButton1.Click += new System.EventHandler(this.PrintButton1_Click);
             // 
             // pnlMain
             // 
             this.pnlMain.Controls.Add(this.groupBox3);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(0, 65);
+            this.pnlMain.Location = new System.Drawing.Point(0, 70);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(800, 391);
+            this.pnlMain.Size = new System.Drawing.Size(800, 386);
             this.pnlMain.TabIndex = 2;
             // 
             // groupBox3
@@ -311,7 +312,7 @@ namespace GoodsSolution
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(800, 391);
+            this.groupBox3.Size = new System.Drawing.Size(800, 386);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "ليست اقلام";
@@ -331,7 +332,7 @@ namespace GoodsSolution
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(794, 334);
+            this.dataGridView1.Size = new System.Drawing.Size(794, 329);
             this.dataGridView1.TabIndex = 5;
             // 
             // txtsearch
@@ -382,6 +383,12 @@ namespace GoodsSolution
             Result.ForEach(a => a.RowID = IDHere++);
             Result.ForEach(a => a.KolPrice = (a.ArzPrice * a.BuyPrice) + (a.OtherPrices));
             dataGridView1.DataSource = Result;
+            lblResult.Text = $"تعداد : {Result.Count.ToString("#,0")}    جمع هزينه‌ها : {Result.Sum(a => a.OtherPrices).ToString("#,0")}    جمع مبالغ كل : {Result.Sum(a => a.KolPrice).ToString("#,0")}";
+        }
+
+        private void PrintButton1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
