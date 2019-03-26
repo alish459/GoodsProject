@@ -763,7 +763,7 @@ namespace GoodsSolution
                 cmbArz.Focus();
                 return;
             }
-            if (Connection.CrudService.GoodsCrud.Create(new Connection.Model.AllGoods() { ActDate = dateControl.GetDateFullChar(), OtherPrices = decimal.Parse(txtOtherPrice.Text), ArzName = cmbArz.Text, ArzID = int.Parse(cmbArz.SelectedValue.ToString()), BuyPrice = decimal.Parse(txtBuyPrice.Text), GoodsName = txtNaka.Text,ArzPrice=decimal.Parse(txtArzPrice.Text) }))
+            if (Connection.CrudService.GoodsCrud.Create(new Connection.Model.AllGoods() { ActDate = dateControl.GetDateFullChar(), OtherPrices = decimal.Parse(txtOtherPrice.Text), ArzName = cmbArz.Text, ArzID = int.Parse(cmbArz.SelectedValue.ToString()), BuyPrice = decimal.Parse(txtBuyPrice.Text), GoodsName = txtNaka.Text, ArzPrice = decimal.Parse(txtArzPrice.Text) }))
             {
                 PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "ثبت با موفقيت انجام شد");
                 LoadData();
@@ -893,7 +893,7 @@ namespace GoodsSolution
             if (cmbArz.SelectedValue != null)
             {
                 var ArzID = int.Parse(cmbArz.SelectedValue.ToString());
-                txtArzPrice.Text = ResultArz.FirstOrDefault(a=>a.ArzID==ArzID).Price.ToString("0.##");
+                txtArzPrice.Text = ResultArz.FirstOrDefault(a => a.ArzID == ArzID).Price.ToString("0.##");
             }
         }
         private void DataGridView1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -961,7 +961,7 @@ namespace GoodsSolution
                 cmbArzEdit.Focus();
                 return;
             }
-            if (Connection.CrudService.GoodsCrud.Update(new Connection.Model.AllGoods() {ActDate=dateControlEdit.GetDateFullChar(),GoodsID=ResultEdit.GoodsID,ArzID=int.Parse(cmbArzEdit.SelectedValue.ToString()),ArzName=cmbArzEdit.Text,ArzPrice=decimal.Parse(txtArzPriceEdit.Text),BuyPrice=decimal.Parse(txtBuyPriceEdit.Text),GoodsName=txtNakaEdit.Text,OtherPrices=decimal.Parse(txtOtherPriceEdit.Text) }))
+            if (Connection.CrudService.GoodsCrud.Update(new Connection.Model.AllGoods() { ActDate = dateControlEdit.GetDateFullChar(), GoodsID = ResultEdit.GoodsID, ArzID = int.Parse(cmbArzEdit.SelectedValue.ToString()), ArzName = cmbArzEdit.Text, ArzPrice = decimal.Parse(txtArzPriceEdit.Text), BuyPrice = decimal.Parse(txtBuyPriceEdit.Text), GoodsName = txtNakaEdit.Text, OtherPrices = decimal.Parse(txtOtherPriceEdit.Text) }))
             {
                 PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "ويرايش با موفقيت انجام شد");
                 LoadData();

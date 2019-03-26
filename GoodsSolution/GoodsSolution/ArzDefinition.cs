@@ -675,7 +675,7 @@ namespace GoodsSolution
             }
             if (txtPriceEdit.Text == "0")
             {
-                PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "مبلغ ارز نمي‌تواند خالي باشد", "e");
+                PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "مبلغ ارز نمي‌تواند صفر باشد", "e");
                 return;
             }
             if (Connection.CrudService.ArzCrud.Update(new Connection.Model.Arz() { ArzID = ResultEdit.ArzID, ArzName = txtArzEdit.Text.Trim(), Price = decimal.Parse(txtPriceEdit.Text) }))

@@ -26,13 +26,25 @@ namespace GoodsSolution
         private PersianUI.Controls.Buttons.PrintButton printButton2;
         private PersianUI.Controls.Buttons.PrintButton printButton1;
         private System.Windows.Forms.Panel pnlMain;
+        private PersianUI.Controls.GroupBox groupBox2;
+        private PersianUI.Controls.FloatTextBox txtArzPrice;
+        private PersianUI.Controls.Label label7;
+        private PersianUI.Controls.Label label6;
+        private PersianUI.Controls.ComboBoxes.ComboBox cmbArz;
+        private List<Connection.Model.Arz> ResultArz = new List<Connection.Model.Arz>();
+        private PersianUI.Controls.Buttons.SaveButton saveButton;
         private List<Connection.GoodsReportService> Result = new List<Connection.GoodsReportService>();
+        private bool isBusyProcessing = false;
         public GoodsReport()
         {
             InitializeComponent();
             txtsearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             dataGridView1.DataSource = new List<Connection.GoodsReportService>();
             SetGrid();
+            ResultArz = Connection.CrudService.ArzCrud.ReturnArz();
+            cmbArz.DataSource = ResultArz;
+            cmbArz.ValueMember = "ArzID";
+            cmbArz.DisplayMember = "ArzName";
         }
         private void SetGrid()
         {
@@ -81,6 +93,12 @@ namespace GoodsSolution
         {
             this.pnlTop = new System.Windows.Forms.Panel();
             this.groupBox1 = new PersianUI.Controls.GroupBox();
+            this.groupBox2 = new PersianUI.Controls.GroupBox();
+            this.saveButton = new PersianUI.Controls.Buttons.SaveButton();
+            this.txtArzPrice = new PersianUI.Controls.FloatTextBox();
+            this.label7 = new PersianUI.Controls.Label();
+            this.label6 = new PersianUI.Controls.Label();
+            this.cmbArz = new PersianUI.Controls.ComboBoxes.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.displayButton = new PersianUI.Controls.Buttons.DisplayButton();
             this.cancelButton = new PersianUI.Controls.Buttons.CancelButton();
@@ -99,6 +117,7 @@ namespace GoodsSolution
             this.txtsearch = new PersianUI.Controls.TextBoxes.TextBox();
             this.pnlTop.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlFooter.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -113,11 +132,12 @@ namespace GoodsSolution
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(800, 70);
+            this.pnlTop.Size = new System.Drawing.Size(800, 145);
             this.pnlTop.TabIndex = 0;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.toDate);
@@ -126,19 +146,104 @@ namespace GoodsSolution
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(800, 70);
+            this.groupBox1.Size = new System.Drawing.Size(800, 145);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "برآورد هزينه";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.saveButton);
+            this.groupBox2.Controls.Add(this.txtArzPrice);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.cmbArz);
+            this.groupBox2.Location = new System.Drawing.Point(112, 72);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(680, 53);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "ويرايش قيمت ارز";
+            // 
+            // saveButton
+            // 
+            this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(140)))), ((int)(((byte)(231)))));
+            this.saveButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(140)))), ((int)(((byte)(231)))));
+            this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveButton.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
+            this.saveButton.ForeColor = System.Drawing.Color.White;
+            this.saveButton.Location = new System.Drawing.Point(50, 17);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(10);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.NextControl = null;
+            this.saveButton.Size = new System.Drawing.Size(81, 34);
+            this.saveButton.TabIndex = 2;
+            this.saveButton.Text = "ثبت";
+            this.saveButton.UseVisualStyleBackColor = false;
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // txtArzPrice
+            // 
+            this.txtArzPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtArzPrice.BackColor = System.Drawing.Color.White;
+            this.txtArzPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtArzPrice.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
+            this.txtArzPrice.ForeColor = System.Drawing.Color.Black;
+            this.txtArzPrice.Location = new System.Drawing.Point(151, 20);
+            this.txtArzPrice.Margin = new System.Windows.Forms.Padding(10);
+            this.txtArzPrice.Name = "txtArzPrice";
+            this.txtArzPrice.NextControl = null;
+            this.txtArzPrice.Size = new System.Drawing.Size(172, 29);
+            this.txtArzPrice.TabIndex = 1;
+            this.txtArzPrice.Text = "0";
+            this.txtArzPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
+            this.label7.Location = new System.Drawing.Point(336, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(51, 22);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "نرخ ارز :";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
+            this.label6.Location = new System.Drawing.Point(621, 24);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(47, 22);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "نام ارز :";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cmbArz
+            // 
+            this.cmbArz.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbArz.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbArz.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbArz.FormattingEnabled = true;
+            this.cmbArz.Location = new System.Drawing.Point(411, 21);
+            this.cmbArz.Margin = new System.Windows.Forms.Padding(10);
+            this.cmbArz.Name = "cmbArz";
+            this.cmbArz.NextControl = null;
+            this.cmbArz.Size = new System.Drawing.Size(200, 30);
+            this.cmbArz.TabIndex = 0;
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.displayButton);
             this.panel1.Controls.Add(this.cancelButton);
-            this.panel1.Location = new System.Drawing.Point(195, 29);
+            this.panel1.Location = new System.Drawing.Point(203, 29);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 37);
+            this.panel1.Size = new System.Drawing.Size(200, 39);
             this.panel1.TabIndex = 2;
             // 
             // displayButton
@@ -178,7 +283,7 @@ namespace GoodsSolution
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
-            this.label1.Location = new System.Drawing.Point(542, 40);
+            this.label1.Location = new System.Drawing.Point(550, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 22);
             this.label1.TabIndex = 8;
@@ -190,7 +295,7 @@ namespace GoodsSolution
             this.toDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.toDate.CanGoBackward = true;
             this.toDate.CanGoForward = false;
-            this.toDate.Location = new System.Drawing.Point(408, 40);
+            this.toDate.Location = new System.Drawing.Point(416, 40);
             this.toDate.Name = "toDate";
             this.toDate.NextControl = null;
             this.toDate.NowShamsi10Cahracter = "1397/12/27";
@@ -207,7 +312,7 @@ namespace GoodsSolution
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.5F);
-            this.label5.Location = new System.Drawing.Point(729, 40);
+            this.label5.Location = new System.Drawing.Point(737, 40);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 22);
             this.label5.TabIndex = 6;
@@ -219,7 +324,7 @@ namespace GoodsSolution
             this.fromDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromDate.CanGoBackward = true;
             this.fromDate.CanGoForward = false;
-            this.fromDate.Location = new System.Drawing.Point(604, 40);
+            this.fromDate.Location = new System.Drawing.Point(612, 40);
             this.fromDate.Name = "fromDate";
             this.fromDate.NextControl = null;
             this.fromDate.NowShamsi10Cahracter = "1397/12/27";
@@ -301,9 +406,9 @@ namespace GoodsSolution
             // 
             this.pnlMain.Controls.Add(this.groupBox3);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(0, 70);
+            this.pnlMain.Location = new System.Drawing.Point(0, 145);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(800, 386);
+            this.pnlMain.Size = new System.Drawing.Size(800, 311);
             this.pnlMain.TabIndex = 2;
             // 
             // groupBox3
@@ -313,7 +418,7 @@ namespace GoodsSolution
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(800, 386);
+            this.groupBox3.Size = new System.Drawing.Size(800, 311);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "ليست اقلام";
@@ -333,7 +438,7 @@ namespace GoodsSolution
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(794, 329);
+            this.dataGridView1.Size = new System.Drawing.Size(794, 254);
             this.dataGridView1.TabIndex = 5;
             // 
             // txtsearch
@@ -350,6 +455,7 @@ namespace GoodsSolution
             this.txtsearch.Size = new System.Drawing.Size(794, 29);
             this.txtsearch.TabIndex = 4;
             this.txtsearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtsearch.TextChanged += new System.EventHandler(this.Txtsearch_TextChanged);
             // 
             // GoodsReport
             // 
@@ -362,6 +468,8 @@ namespace GoodsSolution
             this.pnlTop.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.pnlFooter.ResumeLayout(false);
             this.pnlFooter.PerformLayout();
@@ -379,6 +487,11 @@ namespace GoodsSolution
         }
         private void DisplayButton_Click(object sender, EventArgs e)
         {
+            LoadData();
+        }
+
+        private void LoadData()
+        {
             Result = Connection.CrudService.GoodsCrud.ReturnGoodsForReport(fromDate.GetDateFullChar(), toDate.GetDateFullChar());
             int IDHere = 1;
             Result.ForEach(a => a.RowID = IDHere++);
@@ -386,6 +499,7 @@ namespace GoodsSolution
             dataGridView1.DataSource = Result;
             lblResult.Text = $"تعداد : {Result.Count.ToString("#,0")}    جمع هزينه‌ها : {Result.Sum(a => a.OtherPrices).ToString("#,0")}    جمع مبالغ كل : {Result.Sum(a => a.KolPrice).ToString("#,0")}";
         }
+
         private void PrintButton1_Click(object sender, EventArgs e)
         {
             try
@@ -460,15 +574,47 @@ namespace GoodsSolution
             }
             catch (Exception ex)
             {
-                
+
             }
         }
-        private void CopyAlltoClipboard(System.Windows.Forms.DataGridView dg)
+        private async void Txtsearch_TextChanged(object sender, EventArgs e)
         {
-            dg.SelectAll();
-            System.Windows.Forms.DataObject dataObj = dg.GetClipboardContent();
-            //if (dataObj != null)
-            //System.Windows.Clipboard.SetDataObject(dataObj);
+            while (isBusyProcessing)
+                await Task.Delay(50);
+            try
+            {
+                string ResStr = txtsearch.Text.Trim();
+                isBusyProcessing = true;
+                dataGridView1.DataSource = await System.Threading.Tasks.Task.Run(() => txtsearch.Text.Trim() == string.Empty ? Result : Result.Where(a => a.ActDate.Contains(ResStr) || a.ArzName.Contains(ResStr) || a.GoodsName.Contains(ResStr)).ToList());
+            }
+            finally
+            {
+                isBusyProcessing = false;
+            }
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            if (cmbArz.SelectedValue==null)
+            {
+                PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "هيچ ارزي انتخاب نشده است", "e");
+                return;
+            }
+            if (txtArzPrice.Text == "0")
+            {
+                PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "مبلغ ارز نمي‌تواند صفر باشد", "e");
+                txtArzPrice.Focus();
+                return;
+            }
+            if (Connection.CrudService.ArzCrud.Update(new Connection.Model.Arz() { ArzID = int.Parse(cmbArz.SelectedValue.ToString()), ArzName = cmbArz.Text.Trim(), Price = decimal.Parse(txtArzPrice.Text) }))
+            {
+                PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "ويرايش با موفقيت انجام شد");
+                LoadData();
+            }
+            else
+            {
+                PersianUI.MessageBoxes.CustomMessageForm.CustomMessageBox.Show("پيغام", "ثبت با خطا مواجه شد", "e");
+            }
         }
     }
 }

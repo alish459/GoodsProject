@@ -45,6 +45,7 @@ namespace Connection.CrudService
                     Ins.GoodsName = ObjectName.GoodsName;
                     Ins.OtherPrices = ObjectName.OtherPrices;
                     Ins.ArzPrice = ObjectName.ArzPrice;
+                    Ins.ArzName = ObjectName.ArzName;
                     context.SaveChanges();
                     return true;
                 }
