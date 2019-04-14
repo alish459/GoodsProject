@@ -497,7 +497,7 @@ namespace GoodsSolution
             Result.ForEach(a => a.RowID = IDHere++);
             Result.ForEach(a => a.KolPrice = (a.ArzPrice * a.BuyPrice) + (a.OtherPrices));
             dataGridView1.DataSource = Result;
-            lblResult.Text = $"تعداد : {Result.Count.ToString("#,0")}    جمع هزينه‌ها : {Result.Sum(a => a.OtherPrices).ToString("#,0")}    جمع مبالغ كل : {Result.Sum(a => a.KolPrice).ToString("#,0")}";
+            lblResult.Text = "تعداد : "+Result.Count.ToString("#,0")+"    جمع هزينه‌ها : "+Result.Sum(a => a.OtherPrices).ToString("#,0")+"    جمع مبالغ كل : "+Result.Sum(a => a.KolPrice).ToString("#,0");
         }
 
         private void PrintButton1_Click(object sender, EventArgs e)

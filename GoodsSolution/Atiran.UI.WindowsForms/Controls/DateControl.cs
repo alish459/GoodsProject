@@ -211,7 +211,7 @@ namespace PersianUI.Controls
         }
         public string GetDateFullChar()
         {
-            return $"{Year.Text}/{Month.Text}/{Day.Text}";
+            return Year.Text+"/"+Month.Text+"/"+Day.Text;
         }
         public void SetDate(DateTime value)
         {

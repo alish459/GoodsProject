@@ -18,7 +18,6 @@ namespace PersianUI.MessageBoxes
         private RichTextBox richTextBox1;
         private Panel panel3;
         private PictureBox pictureBox1;
-        public static int state { get; set; } = 1;
         private System.ComponentModel.IContainer components = null;
         protected override void Dispose(bool disposing)
         {
@@ -194,14 +193,7 @@ namespace PersianUI.MessageBoxes
         }
         private void CustomMessageForm_Load(object sender, EventArgs e)
         {
-            if (state==0)
-            {
-                cancelButton1.Focus();
-            }
-            else
-            {
                 okButton1.Focus();
-            }
         }
 
         private void cancelButton1_Click(object sender, EventArgs e)
@@ -238,14 +230,7 @@ namespace PersianUI.MessageBoxes
 
         private void richTextBox1_Enter(object sender, EventArgs e)
         {
-            if (state == 0)
-            {
-                cancelButton1.Focus();
-            }
-            else
-            {
                 okButton1.Focus();
-            }
         }
     }
 }
