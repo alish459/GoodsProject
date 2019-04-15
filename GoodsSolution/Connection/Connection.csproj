@@ -97,13 +97,20 @@
     <Compile Include="GoodsReportService.cs" />
     <Compile Include="CrudService\ArzCrud.cs" />
     <Compile Include="CrudService\GoodsCrud.cs" />
+    <Compile Include="Migrations\201904151327439_InitialCreate.cs" />
+    <Compile Include="Migrations\201904151327439_InitialCreate.Designer.cs">
+      <DependentUpon>201904151327439_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\AllGoods.cs" />
     <Compile Include="Model\Arz.cs" />
     <Compile Include="Model\PersianModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +128,10 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201904151327439_InitialCreate.resx">
+      <DependentUpon>201904151327439_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

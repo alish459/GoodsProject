@@ -12,6 +12,7 @@ namespace Connection.CrudService
         {
             using (var context = new Connection.Model.PersianModel())
             {
+                //var x = context.Customers.ToList();
                 return context.Arz.AsNoTracking().ToList();
             }
         }

@@ -17,6 +17,17 @@ namespace Connection.Model
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //try
+            //{
+            //    Database.SetInitializer<PersianModel>(null);
+            //    base.OnModelCreating(modelBuilder);
+            //}
+            //catch 
+            //{
+            //    System.Windows.Forms.MessageBox.Show("œÌ «»Ì” œ— Õ«· ”«Œ ‰ «” ");
+            //    throw;
+            //}
+            
             modelBuilder.Entity<AllGoods>()
                 .Property(e => e.BuyPrice)
                 .HasPrecision(18, 0);
