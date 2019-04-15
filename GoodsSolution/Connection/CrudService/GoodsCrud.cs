@@ -10,14 +10,14 @@ namespace Connection.CrudService
     {
         public static List<Connection.Model.AllGoods> ReturnAllGoods()
         {
-            using (var context = new Connection.Model.GoodsDBEntities())
+            using (var context = new Connection.Model.PersianModel())
             {
                 return context.AllGoods.AsNoTracking().ToList();
             }
         }
         public static bool Create(Connection.Model.AllGoods AllGoodsInstance)
         {
-            using (var context = new Connection.Model.GoodsDBEntities())
+            using (var context = new Connection.Model.PersianModel())
             {
                 try
                 {
@@ -34,7 +34,7 @@ namespace Connection.CrudService
         }
         public static bool Update(Connection.Model.AllGoods ObjectName)
         {
-            using (var context = new Connection.Model.GoodsDBEntities())
+            using (var context = new Connection.Model.PersianModel())
             {
                 try
                 {
@@ -58,7 +58,7 @@ namespace Connection.CrudService
         }
         public static List<GoodsReportService> ReturnGoodsForReport(string v1, string v2)
         {
-            using (var context = new Connection.Model.GoodsDBEntities())
+            using (var context = new Connection.Model.PersianModel())
             {
                 return (from read in context.AllGoods.AsNoTracking().Where(a => a.ActDate.CompareTo(v1) >= 0 && a.ActDate.CompareTo(v2) <= 0)
                         join read2 in context.Arz on read.ArzID equals read2.ArzID
@@ -77,7 +77,7 @@ namespace Connection.CrudService
         }
         public static bool Delete(int ID)
         {
-            using (var context = new Connection.Model.GoodsDBEntities())
+            using (var context = new Connection.Model.PersianModel())
             {
                 try
                 {

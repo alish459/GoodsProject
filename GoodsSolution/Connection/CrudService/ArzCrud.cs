@@ -10,14 +10,14 @@ namespace Connection.CrudService
     {
         public static List<Connection.Model.Arz> ReturnArz()
         {
-            using (var context = new Connection.Model.GoodsDBEntities())
+            using (var context = new Connection.Model.PersianModel())
             {
                 return context.Arz.AsNoTracking().ToList();
             }
         }
         public static bool Create(Connection.Model.Arz ArzInstance)
         {
-            using (var context = new Connection.Model.GoodsDBEntities())
+            using (var context = new Connection.Model.PersianModel())
             {
                 try
                 {
@@ -34,7 +34,7 @@ namespace Connection.CrudService
         }
         public static bool Update(Connection.Model.Arz ObjectName)
         {
-            using (var context = new Connection.Model.GoodsDBEntities())
+            using (var context = new Connection.Model.PersianModel())
             {
                 try
                 {
@@ -53,7 +53,7 @@ namespace Connection.CrudService
         }
         public static bool Delete(int ID)
         {
-            using (var context = new Connection.Model.GoodsDBEntities())
+            using (var context = new Connection.Model.PersianModel())
             {
                 try
                 {
