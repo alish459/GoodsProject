@@ -69,5 +69,22 @@ namespace Connection.CrudService
                 }
             }
         }
+        public static bool Delete()
+        {
+            using (var context = new Connection.Model.PersianModel())
+            {
+                try
+                {
+                    context.Arz.RemoveRange(context.Arz.ToList());
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show(ex.ToString());
+                    return false;
+                }
+            }
+        }
     }
 }

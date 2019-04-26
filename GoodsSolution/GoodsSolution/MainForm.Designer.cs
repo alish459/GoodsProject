@@ -43,6 +43,7 @@
             this.HeaderTwoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ArzReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlFooter = new System.Windows.Forms.Panel();
+            this.TTExcell = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +51,8 @@
             // 
             this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AddGoodsToolStripMenuItem,
-            this.HeaderTwoToolStripMenuItem});
+            this.HeaderTwoToolStripMenuItem,
+            this.TTExcell});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
             this.menuStripMain.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
@@ -93,7 +95,7 @@
             // ArzReportToolStripMenuItem
             // 
             this.ArzReportToolStripMenuItem.Name = "ArzReportToolStripMenuItem";
-            this.ArzReportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ArzReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ArzReportToolStripMenuItem.Text = "گزارش ارزي";
             this.ArzReportToolStripMenuItem.Click += new System.EventHandler(this.ArzReportToolStripMenuItem_Click);
             // 
@@ -105,6 +107,13 @@
             this.pnlFooter.Size = new System.Drawing.Size(784, 54);
             this.pnlFooter.TabIndex = 1;
             this.pnlFooter.Visible = false;
+            // 
+            // TTExcell
+            // 
+            this.TTExcell.Name = "TTExcell";
+            this.TTExcell.Size = new System.Drawing.Size(187, 19);
+            this.TTExcell.Text = "بروز رساني ديتابيس از طريق اكسل";
+            this.TTExcell.Click += new System.EventHandler(this.TTExcell_Click);
             // 
             // MainForm
             // 
@@ -125,9 +134,10 @@
 
         }
 
+
         #endregion
 
-       
+        private System.Windows.Forms.ToolStripMenuItem TTExcell;
     }
 }
 
